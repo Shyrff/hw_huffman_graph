@@ -1,0 +1,13 @@
+[0m[[0m[33mwarn[0m] [0m[0m/home/maxim/IdeaProjects/Huffman/src/main/scala/Huffman.scala:93:14: a pure expression does nothing in statement position[0m
+[0m[[0m[33mwarn[0m] [0m[0m      return 0[0m
+[0m[[0m[33mwarn[0m] [0m[0m             ^[0m
+[0m[[0m[33mwarn[0m] [0m[0m/home/maxim/IdeaProjects/Huffman/src/main/scala/Huffman.scala:93:7: enclosing method main has result type Unit: return value discarded[0m
+[0m[[0m[33mwarn[0m] [0m[0m      return 0[0m
+[0m[[0m[33mwarn[0m] [0m[0m      ^[0m
+[0m[[0m[33mwarn[0m] [0m[0m/home/maxim/IdeaProjects/Huffman/src/main/scala/Huffman.scala:101:12: a pure expression does nothing in statement position[0m
+[0m[[0m[33mwarn[0m] [0m[0m    return 0[0m
+[0m[[0m[33mwarn[0m] [0m[0m           ^[0m
+[0m[[0m[33mwarn[0m] [0m[0m/home/maxim/IdeaProjects/Huffman/src/main/scala/Huffman.scala:101:5: enclosing method main has result type Unit: return value discarded[0m
+[0m[[0m[33mwarn[0m] [0m[0m    return 0[0m
+[0m[[0m[33mwarn[0m] [0m[0m    ^[0m
+[0m[[0m[33mwarn[0m] [0m[0mfour warnings found[0m
