@@ -1,5 +1,8 @@
+import scala.io.Source
+import java.io._
+
 object Huffman {
-  abstract class CodeTree
+  abstract class CodeTree extends Serializable
   case class Fork(left: CodeTree, right: CodeTree, chars: List[Char], weight: Int) extends CodeTree
   case class Leaf(char: Char, weight: Int) extends CodeTree
 
@@ -68,13 +71,41 @@ object Huffman {
     text flatMap(encodeChar(tree))
   }
 
-  def main(args: Array[String]): Unit = {
-    val text = "test text example"
+  def encodeFile(input: String, output: String): Unit ={
+    val text = Source.fromFile(input).getLines.mkString
     val cd = createCodeTree(text.toList)
-    println(cd)
     val enc = encode(cd)(text.toList)
-    println(enc)
+    val pw = new PrintWriter(new File(output))
+    pw.write(enc.mkString(""))
+    pw.close
+    val oos = new ObjectOutputStream(new FileOutputStream(output + ".ser"))
+    oos.writeObject(cd)
+    oos.close
+  }
+
+  def decodeFile(input: String, output: String): Unit ={
+    val ois = new ObjectInputStream(new FileInputStream(input + ".ser"))
+    val cd = ois.readObject.asInstanceOf[CodeTree]
+    ois.close
+    val enc = Source.fromFile(input).getLines.mkString.map(_.toString).map(_.toInt).toList
     val dec = decode(cd, enc)
-    println(dec)
+    val pw = new PrintWriter(new File(output))
+    pw.write(dec.mkString(""))
+    pw.close
+  }
+
+  def main(args: Array[String]): Unit = {
+    if (args.length != 3){
+      println("args: mode, input, output")
+      println("mode: 0 for encoding, 1 for decoding")
+      println("input: if decoding mode, file containing codetree serealised with the same name + .ser as input " +
+        "must present in the same dir")
+    }else{
+      args(0) match {
+        case "0" => encodeFile(args(1), args(2))
+        case "1" => decodeFile(args(1), args(2))
+        case _ => println("mode: 0 for encoding, 1 for decoding")
+      }
+    }
   }
 }
